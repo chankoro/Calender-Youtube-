@@ -67,6 +67,17 @@ namespace WinFormsApp1
                     //現在の月が指定の月と異なる場合は、カレンダーに表示させないようスキップ
                     continue;
                 }
+
+                //(注意)DataGridViewは、[列,行]で位置を指定する。
+                dgvCal[x,y].Value = wkDay.Day;
+
+                if(wkDay.CompareTo(endDate) == 0)
+                {
+                    //現在の日にち = 月末日となる場合、処理終了
+                    //翌日以降は翌月
+                    break;
+
+                }
             }
 
         }
