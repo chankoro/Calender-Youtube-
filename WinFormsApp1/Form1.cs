@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsApp1
+namespace Calender
 {
     public partial class Form1 : Form
     {
@@ -60,24 +60,25 @@ namespace WinFormsApp1
                 {
                     wkDay = startDay.AddDays(addDay);
                     addDay++;
+
+                     if(wkDay.Month != baseDate.Month)
+                     {
+                         //現在の月が指定の月と異なる場合は、カレンダーに表示させないようスキップ
+                         continue;
+                     }
+
+                         //(注意)DataGridViewは、[列,行]で位置を指定する。
+                     dgvCal[x,y].Value = wkDay.Day;
+
+                     if(wkDay.CompareTo(endDate) == 0)
+                     {
+                          //現在の日にち = 月末日となる場合、処理終了
+                          //翌日以降は翌月
+                          break;
+                     }
                 }
-
-                if(wkDay.Month != baseDate.Month)
-                {
-                    //現在の月が指定の月と異なる場合は、カレンダーに表示させないようスキップ
-                    continue;
-                }
-
-                //(注意)DataGridViewは、[列,行]で位置を指定する。
-                dgvCal[x,y].Value = wkDay.Day;
-
-                if(wkDay.CompareTo(endDate) == 0)
-                {
-                    //現在の日にち = 月末日となる場合、処理終了
-                    //翌日以降は翌月
-                    break;
-
-                }
+               
+                         
             }
 
         }

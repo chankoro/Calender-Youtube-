@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1
+﻿namespace Calender
 {
     partial class Form1
     {
